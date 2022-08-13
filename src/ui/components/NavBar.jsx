@@ -31,6 +31,24 @@ export const NavBar = () => {
                     >
                         DC
                     </NavLink>
+
+                    <NavLink
+                        className={({ isActive }) =>
+                            `nav-item nav-link ${isActive ? "active" : undefined}`
+                        }
+                        to="/search"
+                    >
+                        Search
+                    </NavLink>
+
+                    <NavLink
+                        className={({ isActive }) =>
+                            `nav-item nav-link ${isActive ? "active" : undefined}`
+                        }
+                        to="/hero"
+                    >
+                        Hero
+                    </NavLink>
                 </div>
             </div>
 
