@@ -1,6 +1,16 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 export const NavBar = () => {
+
+    const navigate = useNavigate()
+
+    const onLogout = () => {
+        navigate('/login', {
+            // evita que la persona pueda regresar al historial anterior
+            replace: true
+        })
+    }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
 
@@ -31,24 +41,6 @@ export const NavBar = () => {
                     >
                         DC
                     </NavLink>
-
-                    <NavLink
-                        className={({ isActive }) =>
-                            `nav-item nav-link ${isActive ? "active" : undefined}`
-                        }
-                        to="/search"
-                    >
-                        Search
-                    </NavLink>
-
-                    <NavLink
-                        className={({ isActive }) =>
-                            `nav-item nav-link ${isActive ? "active" : undefined}`
-                        }
-                        to="/hero"
-                    >
-                        Hero
-                    </NavLink>
                 </div>
             </div>
 
@@ -57,7 +49,7 @@ export const NavBar = () => {
                     <span className="nav-item nav-link text-info">
                         Alexander
                     </span>
-                    <button className='nav-item nav-link btn'>
+                    <button onClick={onLogout} className='nav-item nav-link btn'>
                         Logout
                     </button>
                 </ul>
