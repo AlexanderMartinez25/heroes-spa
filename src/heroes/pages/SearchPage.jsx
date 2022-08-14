@@ -2,6 +2,7 @@ import querystring from 'query-string'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useForm } from "../../hooks/useForm"
 import { HeroCard } from "../components/HeroCard"
+import { getHeroesByName } from '../helpers/GetHeroesByName'
 
 export const SearchPage = () => {
 
@@ -10,6 +11,7 @@ export const SearchPage = () => {
 
   // paquete instalado para manejar querys
   const { q = '' } = querystring.parse(location.search)
+  const heroes = getHeroesByName(q)
 
   const { searchText, onInputChange } = useForm({
     searchText: ''
@@ -61,7 +63,12 @@ export const SearchPage = () => {
             No hero width <strong>{q}</strong>
           </div>
 
-          {/* <HeroCard  /> */}
+          {
+            heroes.map(hero => (
+              <HeroCard key={hero.id} {...hero} />
+            ))
+          }
+
         </div>
       </div>
     </>
