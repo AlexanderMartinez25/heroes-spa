@@ -1,4 +1,5 @@
 
+import { useMemo } from "react";
 import { Navigate } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
@@ -8,7 +9,9 @@ export const HeroPage = () => {
   // obtenemos los parámetros de la ruta
   const { id } = useParams();
 
-  const hero = getHeroById(id);
+  // se va a disparar solo cuando el contenido cambie [id]
+  // como en este caso no cambia para nada no se ejecutara dos veces
+  const hero = useMemo(() => getHeroById(id), [id]);
 
   const navigate = useNavigate();
   const onNavigateBack = () => navigate(-1)
