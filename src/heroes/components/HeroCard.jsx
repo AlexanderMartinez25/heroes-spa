@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
 
 const CharacterByHero = ({ alter_ego, characters }) => {
   // if (alter_ego === characters) return (<></>)
   // return <p>{characters}</p>
 
-  return (alter_ego === characters)
-    ? <></>
-    : <p>{characters}</p>
-}
+  return alter_ego === characters ? <></> : <p>{characters}</p>;
+};
 
 export const HeroCard = ({
   id,
@@ -15,16 +13,15 @@ export const HeroCard = ({
   publisher,
   alter_ego,
   first_appearance,
-  characters }) => {
-
-  const heroImageUrl = `/assets/heroes/${id}.jpg`
+  characters,
+}) => {
+  const heroImageUrl = `/assets/heroes/${id}.jpg`;
   // const characterByHero = (<p>{characters}</p>);
 
   return (
     <div className="col">
       <div className="card">
         <div className="row no-gutter">
-
           <div className="col-4">
             <img className="card-img" src={heroImageUrl} alt={superhero} />
           </div>
@@ -43,13 +40,11 @@ export const HeroCard = ({
                 <small className="text-muted">{first_appearance}</small>
               </p>
 
-              <Link to={`/hero/${id}`}>
-                Más...
-              </Link>
+              <Link to={`/hero/${id}`}>Más...</Link>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
