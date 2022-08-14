@@ -14,7 +14,7 @@ export const SearchPage = () => {
   const heroes = getHeroesByName(q)
 
   const { searchText, onInputChange } = useForm({
-    searchText: ''
+    searchText: q
   })
 
   const onSeachSubmit = (e) => {
