@@ -13,13 +13,16 @@ export const SearchPage = () => {
   const { q = '' } = querystring.parse(location.search)
   const heroes = getHeroesByName(q)
 
+  const showSearch = (q.length === 0)
+  const showError = (q.length > 0) && heroes.length === 0
+
   const { searchText, onInputChange } = useForm({
     searchText: q
   })
 
   const onSeachSubmit = (e) => {
     e.preventDefault()
-    if (searchText.trim().lenght <= 1) return
+    // if (searchText.trim().lenght <= 1) return
 
     navigate(`?q=${searchText}`)
   }
@@ -52,16 +55,31 @@ export const SearchPage = () => {
         </div>
 
         <div className="col-7">
-          <h4>Resulst</h4>
+          <h4>Results</h4>
           <hr />
 
-          <div className="alert alert-primary">
+
+          {/* {
+            (q === '')
+              ? <div className="alert alert-primary">Search a hero</div>
+              : (heroes.length === 0) && <div className="alert alert-danger">
+                No hero width <strong>{q}</strong>
+              </div>
+          } */}
+
+          <div
+            style={{ display: showSearch ? '' : 'none' }}
+            className="alert alert-primary animate__animated animate__fadeIn">
             Search a hero
           </div>
 
-          <div className="alert alert-danger">
+          <div
+            style={{ display: showError ? '' : 'none' }}
+            className="alert alert-danger animate__animated animate__fadeIn"
+          >
             No hero width <strong>{q}</strong>
           </div>
+
 
           {
             heroes.map(hero => (
