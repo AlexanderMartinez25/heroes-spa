@@ -18,13 +18,15 @@ export const AuthProvider = ({ children }) => {
   const login = (name = '') => {
 
     const user = { id: 'ABC', name }
-
-    const action = {
-      type: types.login,
-      payload: user
-    }
+    const action = { type: types.login, payload: user }
 
     localStorage.setItem('user', JSON.stringify(user))
+    dispatch(action)
+  }
+
+  const logout = () => {
+    localStorage.removeItem('user')
+    const action = { type: types.logout }
 
     dispatch(action)
   }
@@ -32,8 +34,11 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{
       // estas son las funciones y propiedades que tendrán acceso todos los hijos
+      // Atributes
       ...authState,
-      login
+
+      //methods
+      login, logout
     }} >
       {children}
     </AuthContext.Provider>

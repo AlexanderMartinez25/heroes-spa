@@ -5,11 +5,14 @@ import { AuthContext } from '../../auth/context';
 export const NavBar = () => {
 
   // es practicamente llamar un servicio
-  const { user } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
 
   const navigate = useNavigate()
 
   const onLogout = () => {
+
+    logout();
+
     navigate('/login', {
       // evita que la persona pueda regresar al historial anterior
       replace: true
