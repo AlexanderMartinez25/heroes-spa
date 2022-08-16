@@ -6,7 +6,7 @@ export const NavBar = () => {
 
   // es practicamente llamar un servicio
   const { user } = useContext(AuthContext)
-  console.log(user);
+
   const navigate = useNavigate()
 
   const onLogout = () => {
