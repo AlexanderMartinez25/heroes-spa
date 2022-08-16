@@ -1,22 +1,28 @@
-import { Routes, Route } from "react-router-dom";
-import { LoginPage } from "../auth/pages/LoginPage";
+import { Route, Routes } from 'react-router-dom';
 
-import { HeroesRoutes } from "../heroes";
-import { PrivateRoute } from "./PrivateRoute";
-import { PublicRoute } from "./PublicRoute";
+import { HeroesRoutes } from '../heroes';
+import { LoginPage } from '../auth';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+
+
 
 export const AppRouter = () => {
   return (
     <>
-      <Routes>
-        {/* RUTA PÚBLICA */}
-        <Route path="/login" element={
-          <PublicRoute>
-            <LoginPage />
-          </PublicRoute>
-        } />
 
-        {/* RUTA PROTEGIDA */}
+      <Routes>
+
+        <Route path="login/*" element={
+          <PublicRoute>
+            {/* <LoginPage /> */}
+            <Routes>
+              <Route path="/*" element={<LoginPage />} />
+            </Routes>
+          </PublicRoute>
+        }
+        />
+
         <Route path="/*" element={
           <PrivateRoute>
             <HeroesRoutes />
@@ -24,11 +30,10 @@ export const AppRouter = () => {
         } />
 
         {/* <Route path="login" element={<LoginPage />} /> */}
-
-        {/* cualquier ruta que no sea el login vaya a HeroesRoutes */}
-        {/* <Route path="/*" element={<HeroesRoutes />} /> */}
+        {/* <Route path="/*" element={ <HeroesRoutes />} /> */}
 
       </Routes>
+
     </>
   )
 }

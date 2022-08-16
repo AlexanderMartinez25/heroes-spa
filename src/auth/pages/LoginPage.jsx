@@ -12,7 +12,9 @@ export const LoginPage = () => {
   const onLogin = () => {
     login('Alexander Martinez')
 
-    navigate('/', {
+    const lastPath = localStorage.getItem('lastPath') || '/'
+
+    navigate(lastPath, {
       // evita que la persona pueda regresar al historial anterior
       replace: true
     })
