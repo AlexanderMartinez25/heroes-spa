@@ -11,4 +11,21 @@ describe('Preubas en <SearchPage />', () => {
     )
     expect(container).toMatchSnapshot()
   })
+
+  test('debe de mostrara Batman y el input del queryString', () => {
+    render(
+      <MemoryRouter initialEntries={['/search?q=batman']}>
+        <SearchPage />
+      </MemoryRouter>
+    )
+
+    const input = screen.getByRole('textbox')
+    expect(input.value).toBe('batman')
+
+    const img = screen.getByRole('img')
+    expect(img.src).toContain("assets/heroes/dc-batman.jpg")
+
+    const alertDanger = screen.getByLabelText('alert-danger')
+    expect(alertDanger.style.display).toEqual('none')
+  })
 })
