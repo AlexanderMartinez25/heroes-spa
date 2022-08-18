@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 
 import { AuthContext } from "../../src/auth";
 import { PrivateRoute } from "../../src/router/PrivateRoute";
