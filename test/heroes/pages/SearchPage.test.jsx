@@ -60,18 +60,20 @@ describe('Preubas en <SearchPage />', () => {
   })
 
   test('debe de llamar el navigate a la pantalla nueva', () => {
+    const initialValue = 'Superman';
+
     render(
       <MemoryRouter initialEntries={['/search']}>
         <SearchPage />
       </MemoryRouter>
     )
     const input = screen.getByRole('textbox')
-    fireEvent.change(input, { target: { name: 'searchText', value: 'Superman' } })
+    fireEvent.change(input, { target: { name: 'searchText', value: initialValue } })
 
     const form = screen.getByLabelText('form')
     fireEvent.submit(form)
 
-    expect(mockUseNavigate).toHaveBeenCalledWith('?q=superman')
+    expect(mockUseNavigate).toHaveBeenCalledWith(`?q=${initialValue}`)
 
   })
 })
