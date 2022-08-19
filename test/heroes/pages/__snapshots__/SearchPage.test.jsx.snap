@@ -16,7 +16,9 @@ exports[`Preubas en <SearchPage /> debe de mostrarse correctamente con valore po
         Searching
       </h4>
       <hr />
-      <form>
+      <form
+        aria-label="form"
+      >
         <input
           autocomplete="off"
           class="form-control"
@@ -40,6 +42,7 @@ exports[`Preubas en <SearchPage /> debe de mostrarse correctamente con valore po
       </h4>
       <hr />
       <div
+        aria-label="alert-info"
         class="alert alert-primary animate__animated animate__fadeIn"
       >
         Search a hero
